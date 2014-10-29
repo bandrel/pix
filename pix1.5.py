@@ -1,4 +1,3 @@
-
 #First properly working algorithm
 
 import png, random, time

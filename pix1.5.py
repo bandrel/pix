@@ -1,11 +1,13 @@
-
 #First properly working algorithm
 
-import png, random, time
+import png, random, time, sys, getopt
+# Global Definitions
 cubeedgewidth = 19
-version = '5.2 len ' + str(cubeedgewidth)
-inimage = 'duck1.png'
-outimage = inimage + 'out' + str(version) + '.png'
+# version = '5.2 len ' + str(cubeedgewidth)
+# inimage = 'duck1.png'
+# outimage = inimage + 'out' + str(version) + '.png'
+
+# Functions
 def maketime(secondsin):
 	(min, sec) = divmod(secondsin, 60)
 	(hr, min) = divmod(min, 60)
@@ -87,6 +89,23 @@ def findColorDistance(r1, g1, b1, r2, g2, b2):
 	return ((r1-r2) ** 2 + (g1 -g2) ** 2 + (b1 -  b2) ** 2) ** .5
 	
 
+
+
+#File names from command arguments
+try:
+	opts, args = getopt.getopt(sys.argv[1:],"hi:o:",["inputfile=","outputfile="])
+except getopt.GetoptError:
+	print 'pix<version>.py -i <inputfile> -o <outputfile>'
+	sys.exit(2)
+
+for opt, arg in opts:
+	if opt == '-h':
+		print 'pix<version>.py -i <inputfile> -o <outputfile>'
+		sys.exit()
+	elif opt in ("-i", "--inputfile"):
+		inimage = arg
+	elif opt in ("-o", "--outputfile"):
+		outimage = arg
 
 ###################################
 
